@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HMS Navbar</title>
+        
+
+
+</head>
+<body>
+    <style>
+        body{
+            margin: 0;
+            border-radius: 0;
+        }
+        nav{
+            background-color: blue;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+        }
+        .container{
+                display: flex;
+                justify-content: end;
+                
+
+                
+        }
+        a{
+            text-decoration: none;
+            margin: 12px;
+        }
+      
+    </style>
+<nav>
+    <div class="container"> 
+        <div class="auth_container">
+            <a href="url_for('login')">Login</a>
+            <a href="">Registration </a></div>
+    </div>
+       
+  {% block content %}
+  {% endblock %}
+
+
+</nav>
+
+<footer></footer>
+</body>
+</html>
+
+
+
