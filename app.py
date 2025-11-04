@@ -1,4 +1,4 @@
-from flask import Flask, render_template,request,redirect,url_for
+from flask import Flask, render_template,request,redirect,url_for,session
 from extension import db
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///hospital.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-
+app.secret_key = '12343843'
 
 
 
@@ -42,10 +42,12 @@ def login():
         ext_user= User.query.filter_by(email=f_name,password=p_psw).first()
 
 
-
-
+        if ext_user: 
+            session['id'] =ext_user.id
+            session['f_name'] =f_name
+            session['role'] =ext_user.role
         if ext_user and ext_user.role == "patient":
-
+            
             return redirect(url_for('patient_dashbaord'))
         if ext_user and ext_user.role == "admin":
 
@@ -63,9 +65,20 @@ def login():
 def patient_dashbaord():
     return render_template('patient_dashbaord.html')
 
+
+
+
 @app.route('/admin_dashbaord')
 def admin_dashbaord():
-    return render_template('admin_dashbaord.html')
+
+    reg_patinet = User.query.filter_by(role='patient').all()
+
+    return render_template('admin_dashbaord.html',reg_patinet=reg_patinet)
+
+
+@app.route('/add_doctor')
+def add_doctor():
+    return render_template('add_doctor.html')
 
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
@@ -104,6 +117,13 @@ def registration():
     return render_template('registration.html')
 
 
+
+@app.route('/logout')
+def logout():
+    session.pop('id',None)
+    session.pop('f_name',None)
+    session.pop('role',None)
+    return redirect(url_for('index'))
 
 
 

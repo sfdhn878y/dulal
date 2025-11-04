@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,48 +8,108 @@
     <title>HMS Navbar</title>
         
 
-
-</head>
-<body>
     <style>
-        body{
-            margin: 0;
-            border-radius: 0;
+        /* This is the paper we are drawing on! */
+        body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f9;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh; /* Makes body at least the full viewport height */
+        overflow-x: hidden;
         }
-        nav{
-            background-color: blue;
-            height: 40px;
+
+        /* This is the big blue ribbon at the top! */
+        .nav-bar {
+            background-color: #1abc9c; /* A nice, calm **seafoam green** color, like a doctor's scrubs! */
             display: flex;
             align-items: center;
-            justify-content: end;
+            justify-content: space-between;
+            padding: 15px 35px; /* A bit more space on the top/bottom and sides, like a nice frame */
+            color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a little **shadow** underneath so it pops up! */
+           
         }
-        .container{
-                display: flex;
-                justify-content: end;
-                
 
-                
+        /* This is the big name for the hospital! */
+        .logo {
+            font-size: 24px; /* A little bigger so it's the star! */
+            font-weight: 700; /* Makes it extra bold */
+            letter-spacing: 1px; /* A tiny bit more space between letters */
         }
-        a{
+
+        /* This is for the "Login" and "Signup" buttons */
+        .nav-links {
+            display: flex;
+            gap: 25px; /* More space between the links so they don't touch */
+        }
+
+        /* This is how the links look when you're NOT touching them */
+        .nav-links a {
+            color: white;
             text-decoration: none;
-            margin: 12px;
+            font-size: 16px; /* A tiny bit bigger for easier reading */
+            font-weight: 600; /* A little bolder */
+            padding: 5px 10px; /* Gives the links a little invisible box to sit in */
+            border-radius: 4px; /* Makes the corners a little soft and round */
+            transition: background-color 0.3s, transform 0.1s; /* Makes the change look smooth! */
         }
-      
+
+        /* This is how the links look when you put your mouse on them (hover)! */
+        .nav-links a:hover {
+            color: #1abc9c; /* The link text turns the same color as the nav bar! */
+            background-color: white; /* The background behind the text turns **white**! */
+            transform: translateY(-1px); /* Makes it look like the button is jumping up a tiny bit! */
+        }
+
+        /* This is just for fun to see the content block */
+        .content-area {
+             flex: 1;
+            padding: 20px 35px;
+            font-size: 18px;
+            color: #333;
+        }
+        .page-content {
+    flex: 1; /* takes all available space between nav and footer */
+}
+        .site-footer {
+    background-color: #1c2833;
+        color: #bdc3c7;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 0.9rem;
+        width: 100%;
+        flex-shrink: 0; 
+}
+
+.site-footer p {
+    margin: 0;
+}
     </style>
-<nav>
-    <div class="container"> 
-        <div class="auth_container">
-            <a href="url_for('login')">Login</a>
-            <a href="">Registration </a></div>
-    </div>
-       
-  {% block content %}
-  {% endblock %}
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="logo">Hospital Management System</div>
+        
 
+            {% if session.get('id') %}
+                {{session.get('f_name')}}
+                <a href="{{url_for('logout')}}">logout</a>
+            {% else %}
+            login and resigstrioan
+            {% endif %}
 
-</nav>
+ 
 
-<footer></footer>
+    </nav>
+
+   {% block content %}
+   {% endblock %}
+<footer class="site-footer">
+    <p>&copy; 2025 Hospital Management System. All Rights Reserved. | Built with Care and Code.</p>
+</footer>
+
 </body>
 </html>
 

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}Hospital Home{% endblock %}
+
+{% block content %}
+<style>
+/* Main container for the landing page view.
+  Fills the viewport height and width for a full-screen effect.
+*/
+.page-container {
+    /* Set height to 90% of the viewport height to ensure footer is visible */
+    height: 90vh;
+    width: 100vw;
+    
+    /* Display properties for centering content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    /* Styling for the background image */
+    background-image: linear-gradient(rgba(20, 30, 48, 0.7), rgba(36, 59, 85, 0.7)), url('https://generalhospitalernakulam.in/wp-content/uploads/2023/09/TRAUMA2.jpeg');
+    background-size: cover; /* Ensures the background image covers the entire container */
+    background-position: center; /* Centers the background image */
+    background-repeat: no-repeat;
+    
+    /* Text styling for content within this container */
+    color: #ffffff;
+    text-align: center;
+    
+}
+
+/* Styling for the main heading on the page.
+*/
+.page-container h1 {
+    font-size: 3rem; /* Use 'rem' for responsive font scaling */
+    font-weight: 600;
+    /* Adds a subtle shadow for better readability against the background */
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    margin: 0;
+    padding: 0 20px; /* Add some padding for smaller screens */
+}
+</style>
+
+<div class="page-container">
+    <h1>Welcome to Our Hospital System</h1>
+</div>
+{% endblock %}
+
+
+

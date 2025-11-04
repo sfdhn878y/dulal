@@ -1,5 +1,25 @@
 {% extends 'base.html'%}
-{%  block content %}
-ddsfdsfdmin dashbaord
+{% block content %}
 
+
+<div style="display: block;">
+   
+    
+     <a href="{{url_for('add_doctor')}}">Add a dcotor</a>
+      <br><br>
+        Total patinet register
+    {% for i in reg_patinet %}
+    <div>
+       name
+        {{i.name}}
+        <a href="">Edit</a>
+        <a href="">Delte</a>
+        <a href="">Blacklist</a>
+    </div>
+
+</div>
+
+
+
+{% endfor %}
 {% endblock %}
